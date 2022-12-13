@@ -12,7 +12,9 @@
         $("#submitbtn").on("click",sendhook);
         function sendhook(){
             var url = $("#hookurl").val();
-
+            var header = {
+                "Content-Type" : "application/json"
+            }
             var JSONdata = {
                 content : $("#messagetext").val()
             }
@@ -22,6 +24,7 @@
                 data : JSONdata,
                 dataType : 'JSON',
                 scriptCharset : 'utf-8',
+                headers : header,
                 success : function(data){
                     console.log("success");
                     console.log(data);
