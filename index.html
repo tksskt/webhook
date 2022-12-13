@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>discord web hook</title>
+        <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        url : <input type="text" id="hookurl"><br>
+        メッセージ : <input type="text" id="messagetext">
+        <button type="submit" id="submitbtn">送信</button>
+    </body>
+    <script>
+        $("#submitbtn").on("click",sendhook);
+        function sendhook(){
+            var url = $("#hookurl").val();
+
+            var JSONdata = {
+                content : $("#messagetext").val()
+            }
+            $.ajax({
+                type : 'psot',
+                url : url,
+                data : JSON.stringify(JSONdata),
+                dataType : 'JSON',
+                scriptCharset : 'utf-8',
+                success : function(data){
+                    console.log("success");
+                    console.log(data);
+                },
+                error : function(data){
+                    console.log("error");
+                    console.log(data);
+                }
+            });
+        }
+    </script>
+</html>
